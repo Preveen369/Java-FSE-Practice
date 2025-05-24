@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Database: `sql_practice`
 --
 
+CREATE DATABASE sql_practice;
+USE sql_practice;
+
 -- --------------------------------------------------------
 
 --

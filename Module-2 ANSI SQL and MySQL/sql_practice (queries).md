@@ -201,6 +201,149 @@ LEFT JOIN Sessions ON Sessions.event_id = Events.event_id
 where Sessions.session_id is null;
 ```
 
+## Feedback Gap
+
+**Description:**  
+Identify events that had registrations but received no feedback at all.
+
+```sql
+select Events.event_id, Events.title as event_title
+from Events JOIN Registrations 
+ON Events.event_id = Registrations.event_id
+LEFT JOIN Feedback 
+ON Registrations.event_id = Feedback.event_id
+where Feedback.feedback_id is null
+group by Events.event_id, Events.title;
+```
+
+---
+
+## Event with Maximum Sessions
+
+**Description:**  
+List the event(s) with the highest number of sessions.
+
+```sql
+SELECT Sessions.event_id, Events.title AS event_title, 
+       COUNT(Sessions.session_id) AS session_count
+FROM Sessions JOIN Events 
+ON Sessions.event_id = Events.event_id
+GROUP BY Sessions.event_id, Events.title
+HAVING COUNT(Sessions.session_id) = (
+    SELECT MAX(session_count)
+    FROM (
+        SELECT COUNT(session_id) AS session_count
+        FROM Sessions
+        GROUP BY event_id
+    ) AS session_counts
+);
+```
+
+---
+
+## Daily New User Count
+
+**Description:**  
+Find the number of users who registered each day in the last 7 days.
+
+```sql
+SELECT 
+    registration_date,
+    COUNT(user_id) AS new_user_count
+FROM Users
+WHERE registration_date >= CURDATE() - INTERVAL 7 DAY
+GROUP BY registration_date
+ORDER BY registration_date DESC;
+```
+
+---
+
+## Average Session Duration per Event
+
+**Description:**  
+Compute the average duration (in minutes) of sessions in each event.
+
+```sql
+SELECT 
+    event_id,
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, start_time, end_time)), 2) AS avg_session_duration_minutes
+FROM Sessions
+GROUP BY event_id;
+```
+
+---
+
+## Registration Trends
+
+**Description:**  
+Show a month-wise registration count trend over the past 12 months.
+
+```sql
+SELECT 
+    DATE_FORMAT(registration_date, '%Y-%m') AS year_month,
+    COUNT(*) AS registrations_count
+FROM Registrations
+WHERE registration_date >= CURDATE() - INTERVAL 12 MONTH
+GROUP BY year_month
+ORDER BY year_month;
+```
+
+---
+
+## Duplicate Registrations Check
+
+**Description:**  
+Detect if a user has been registered more than once for the same event.
+
+```sql
+SELECT 
+    user_id,
+    event_id,
+    COUNT(*) AS registration_count
+FROM Registrations
+GROUP BY user_id, event_id
+HAVING COUNT(*) > 1;
+```
+
+---
+
+## Top Feedback Providers
+
+**Description:**  
+List top 5 users who have submitted the most feedback entries.
+
+```sql
+SELECT 
+    Users.user_id,
+    Users.full_name,
+    COUNT(Feedback.feedback_id) AS feedback_count
+FROM Users 
+JOIN Feedback ON Users.user_id = Feedback.user_id
+GROUP BY Users.user_id, Users.full_name
+ORDER BY feedback_count DESC
+LIMIT 5;
+```
+
+---
+
+## User Engagement Index
+
+**Description:**  
+For each user, calculate how many events they attended and how many feedback entries they submitted.
+
+```sql
+SELECT 
+    Users.user_id,
+    Users.full_name,
+    COUNT(DISTINCT Registrations.event_id) AS events_attended,
+    COUNT(Feedback.feedback_id) AS feedbacks_submitted
+FROM Users 
+LEFT JOIN Registrations ON Users.user_id = Registrations.user_id
+LEFT JOIN Feedback ON Users.user_id = Feedback.user_id
+GROUP BY Users.user_id, Users.full_name
+ORDER BY events_attended DESC, feedbacks_submitted DESC;
+```
+
 ---
 
 This document provides a clear overview of the SQL queries used to analyze various aspects of the `sql_practice` database.
