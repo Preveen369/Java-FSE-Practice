@@ -1,0 +1,206 @@
+# SQL Practice Queries
+
+This README provides various SQL queries for the `sql_practice` database. Each section includes a description and the corresponding query.
+
+---
+
+## User Upcoming Events
+
+**Description:**  
+Show a list of all upcoming events a user is registered for in their city, sorted by date.
+
+```sql
+select 
+    Users.full_name, 
+    Events.title, 
+    Events.city, 
+    Events.description, 
+    Events.start_date, 
+    Events.end_date 
+from Users 
+JOIN Registrations ON Users.user_id = Registrations.user_id 
+JOIN Events ON Registrations.event_id = Events.event_id 
+where Events.status = 'upcoming'
+  and Users.city = Events.city
+order by Events.start_date ASC;
+```
+
+---
+
+## Top Rated Events
+
+**Description:**  
+Identify events with the highest average rating, considering only those that have received at least 10 feedback submissions.
+
+```sql
+select 
+    Events.event_id, 
+    Events.title, 
+    avg(Feedback.rating) as average_rating, 
+    count(Feedback.feedback_id) as feedback_count
+from Events 
+JOIN Feedback ON Events.event_id = Feedback.event_id
+group by Events.event_id, Events.title
+having count(Feedback.feedback_id) >= 10
+order by average_rating DESC;
+```
+
+---
+
+## Inactive Users
+
+**Description:**  
+Retrieve users who have not registered for any events in the last 90 days.
+
+```sql
+SELECT 
+    Users.user_id,
+    Users.full_name,
+    Users.email,
+    Users.city,
+    Users.registration_date
+FROM Users 
+LEFT JOIN Registrations ON Users.user_id = Registrations.user_id
+GROUP BY 
+    Users.user_id, Users.full_name, Users.email, Users.city, Users.registration_date
+HAVING 
+    MAX(Registrations.registration_date) IS NULL 
+    OR MAX(Registrations.registration_date) < CURDATE() - INTERVAL 90 DAY;
+```
+
+---
+
+## Peak Session Hours
+
+**Description:**  
+Count how many sessions are scheduled between 10 AM to 12 PM for each event.
+
+```sql
+select 
+    Events.event_id, 
+    Events.title, 
+    count(Sessions.session_id) as Number_of_Sessions
+from Events 
+LEFT JOIN Sessions ON Events.event_id = Sessions.event_id
+where time(Sessions.start_time) >= '10:00:00' 
+  AND time(Sessions.end_time) < '12:00:00'
+group by Events.event_id, Events.title;
+```
+
+---
+
+## Most Active Cities
+
+**Description:**  
+List the top 5 cities with the highest number of distinct user registrations.
+
+```sql
+select 
+    Users.city, 
+    count(distinct Users.user_id) as total_registered_users
+from Users 
+JOIN Registrations ON Users.user_id = Registrations.user_id
+group by Users.city
+order by total_registered_users DESC
+limit 5;
+```
+
+---
+
+## Event Resource Summary
+
+**Description:**  
+Generate a report showing the number of resources (PDFs, images, links) uploaded for each event.
+
+```sql
+select 
+    Events.event_id, 
+    Events.title, 
+    SUM(CASE WHEN Resources.resource_type = 'pdf' THEN 1 ELSE 0 END) AS pdf_count,
+    SUM(CASE WHEN Resources.resource_type = 'image' THEN 1 ELSE 0 END) AS image_count,
+    SUM(CASE WHEN Resources.resource_type = 'link' THEN 1 ELSE 0 END) AS link_count
+from Events 
+LEFT JOIN Resources ON Events.event_id = Resources.event_id
+group by Events.event_id, Events.title;
+```
+
+---
+
+## Low Feedback Alerts
+
+**Description:**  
+List all users who gave feedback with a rating less than 3, along with their comments and associated event names.
+
+```sql
+select 
+    Users.user_id, 
+    Users.full_name, 
+    Events.event_id,
+    Events.title AS event_title, 
+    Feedback.rating,
+    Feedback.comments, 
+    Feedback.feedback_date
+from Feedback 
+JOIN Users ON Users.user_id = Feedback.user_id 
+JOIN Events ON Feedback.event_id = Events.event_id 
+where Feedback.rating < 3;
+```
+
+---
+
+## Sessions per Upcoming Event
+
+**Description:**  
+Display all upcoming events with the count of sessions scheduled for them.
+
+```sql
+select 
+    Events.event_id, 
+    Events.title as event_title, 
+    count(Sessions.session_id) as total_sessions
+from Events 
+LEFT JOIN Sessions ON Events.event_id = Sessions.event_id
+where status = 'upcoming'
+group by Events.event_id, Events.title;
+```
+
+---
+
+## Organizer Event Summary
+
+**Description:**  
+For each event organizer, show the number of events created and their current status (upcoming, completed, cancelled).
+
+```sql
+SELECT 
+    Users.user_id, 
+    Users.full_name AS organizer_name,
+    Events.status, 
+    COUNT(Events.event_id) AS total_events
+FROM Users 
+JOIN Events ON Users.user_id = Events.organizer_id
+GROUP BY Users.user_id, Users.full_name, Events.status
+ORDER BY Users.user_id, Events.status;
+```
+
+---
+
+## Events Without Sessions
+
+**Description:**  
+List all events that currently have no sessions scheduled under them.
+
+```sql
+select 
+    Events.event_id, 
+    Events.title as event_title, 
+    Events.start_date, 
+    Events.status
+from Events 
+LEFT JOIN Sessions ON Sessions.event_id = Events.event_id 
+where Sessions.session_id is null;
+```
+
+---
+
+This document provides a clear overview of the SQL queries used to analyze various aspects of the `sql_practice` database.
