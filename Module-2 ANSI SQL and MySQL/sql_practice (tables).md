@@ -139,10 +139,10 @@ INSERT INTO Sessions (event_id, title, speaker_name, start_time, end_time) VALUE
 ```sql
 INSERT INTO Registrations (user_id, event_id, registration_date) VALUES
     (1, 1, '2025-05-01'),
-    (1, 1, '2025-05-02'),
-    (1, 2, '2025-04-30'),
-    (1, 2, '2025-04-28'),
-    (1, 3, '2025-06-18');
+    (2, 1, '2025-05-02'),
+    (3, 2, '2025-04-30'),
+    (4, 2, '2025-04-28'),
+    (5, 3, '2025-06-18');
 ```
 
 ### Insert Data into Feedback
