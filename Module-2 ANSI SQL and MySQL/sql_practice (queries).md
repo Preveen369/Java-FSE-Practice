@@ -346,4 +346,151 @@ ORDER BY events_attended DESC, feedbacks_submitted DESC;
 
 ---
 
+## Completed Events with Feedback Summary
+
+**Description:**  
+For completed events, show total registrations and average feedback rating.
+
+```sql
+SELECT 
+    Events.event_id, 
+    Events.title AS event_title,
+    COUNT(DISTINCT Registrations.registration_id) AS total_registrations,
+    ROUND(AVG(Feedback.rating), 2) AS average_feedback_ratings
+FROM Events 
+LEFT JOIN Registrations ON Events.event_id = Registrations.event_id
+LEFT JOIN Feedback ON Registrations.event_id = Feedback.event_id
+WHERE Events.status = 'completed'
+GROUP BY Events.event_id, Events.title;
+```
+
+---
+
+## Resource Availability Check
+
+**Description:**  
+List all events that do not have any resources uploaded.
+
+```sql
+select Events.event_id, Events.title as event_title
+from Events JOIN Registrations
+ON Events.event_id = Registrations.event_id
+where Registrations.registration_id is null;
+```
+
+---
+
+## Multi-Session Speakers
+
+**Description:**  
+Identify speakers who are handling more than one session across all events.
+
+```sql
+select speaker_name, count(*) as sessions_count
+from Sessions group by speaker_name
+having count(*) = 1
+order by sessions_count desc;
+```
+
+---
+
+## Unregistered Active Users
+
+**Description:**  
+Find users who created an account in the last 30 days but haven’t registered for any events.
+
+```sql
+SELECT 
+    Users.user_id,
+    Users.full_name,
+    Users.email,
+    Users.registration_date
+FROM 
+    Users 
+LEFT JOIN 
+    Registrations  ON Users.user_id = Registrations.user_id
+WHERE 
+    Users.registration_date >= CURDATE() - INTERVAL 30 DAY
+    AND Registrations.user_id IS NULL;
+```
+
+
+---
+
+## Event Session Time Conflict
+
+**Description:**  
+Identify overlapping sessions within the same event.
+
+```sql
+SELECT 
+    s1.event_id,
+    s1.title AS session_1,
+    s2.title AS session_2,
+    s1.start_time AS s1_start,
+    s1.end_time AS s1_end,
+    s2.start_time AS s2_start,
+    s2.end_time AS s2_end
+FROM 
+    Sessions s1
+JOIN 
+    Sessions s2 
+    ON s1.event_id = s2.event_id 
+    AND s1.session_id < s2.session_id
+WHERE 
+    s1.start_time < s2.end_time 
+    AND s2.start_time < s1.end_time;
+```
+
+
+
+---
+
+## Most Registered Events 
+
+**Description:**  
+List top 3 events based on the total number of user registrations.
+
+```sql
+SELECT 
+    Events.event_id,
+    Events.title AS event_title,
+    COUNT(Registrations.registration_id) AS total_registrations
+FROM 
+    Events
+JOIN 
+    Registrations ON Events.event_id = Registrations.event_id
+GROUP BY 
+    Events.event_id, Events.title
+ORDER BY 
+    total_registrations DESC
+LIMIT 3;
+```
+
+
+
+---
+
+## Average Rating per City
+
+**Description:**  
+Calculate the average feedback rating of events conducted in each city.
+
+```sql
+SELECT 
+    Events.city,
+    ROUND(AVG(Feedback.rating), 2) AS average_rating
+FROM 
+    Feedback 
+JOIN 
+    Events ON Feedback.event_id = Events.event_id
+GROUP BY 
+    Events.city
+ORDER BY 
+    average_rating DESC;
+```
+
+
+---
+
 This document provides a clear overview of the SQL queries used to analyze various aspects of the `sql_practice` database.
