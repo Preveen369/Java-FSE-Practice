@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Community Event Portal</title>
+
+    <style>
+        #welcomeBanner {
+            background-color: blue;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            font-weight: bold;
+            background-color: yellow;
+        }
+
+        .event-img {
+            border: 2px solid black;
+            width: 150px;
+            height: auto;
+        }
+
+        caption {
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+        <a href="help.html" target="_blank" rel="noopener">Help</a>
+    </nav>
+
+    <!-- Main -->
+    <section id="home">
+        <h1>Welcome to the Community Portal</h1>
+    </section>
+
+    <section id="events">
+        <h2>Upcoming Events</h2>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+    </section>
+
+    <div id="welcomeBanner">
+        Welcome back, <span class="highlight">User!</span>
+        <span style="color: red; font-weight: bold;">Special Offer: 20% Off!</span>
+    </div>
+
+    <table>
+        <tr>
+            <td><img src="event1.jpg" alt="Community-cleanup" title="Community Cleanup" class="event-img" /></td>
+            <td><img src="event2.jpg" alt="Charity Run" title="Charity Run" class="event-img"></td>
+            <td><img src="event3.jpg" alt="Food Drive" title="Food Drive" class="event-img"></td>
+        </tr>
+        <tr>
+            <td>
+                <caption>Cleanup Event</caption>
+            </td>
+            <td>
+                <caption>Charity Run</caption>
+            </td>
+            <td>
+                <caption>Food Drive</caption>
+            </td>
+        </tr>
+    </table>
+
+    <form id="registrationForm" style="max-width:400px; margin:auto; padding:1rem; border:1px solid #ccc;">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" placeholder="Your full name" required autofocus><br /><br />
+
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" placeholder="name@example.com" required><br /><br />
+
+        <label for="eventDate">Event Date:</label><br />
+        <input type="date" id="eventDate" name="eventDate" required><br /><br />
+
+        <label for="eventType">Event Type:</label><br />
+        <select id="eventType" name="eventType" required>
+            <option value="">Select...</option>
+            <option value="cleanup">Community Cleanup</option>
+            <option value="run">Charity Run</option>
+            <option value="foodDrive">Food Drive</option>
+        </select><br /><br />
+
+        <label for="message">Message:</label><br />
+        <textarea id="message" name="message" placeholder="Additional info" rows="4"></textarea><br /><br />
+
+        <button type="submit">Register</button><br /><br />
+
+        <output id="confirmation"></output>
+    </form>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const confirmation = document.getElementById('confirmation');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // prevent actual submission
+            confirmation.textContent = `Thank you for registering, ${form.name.value}!`;
+        });
+    </script>
+
+
+    <!-- Footer -->
+</body>
+
+</html>
