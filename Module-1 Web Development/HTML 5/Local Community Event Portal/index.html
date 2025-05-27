@@ -104,6 +104,52 @@
         <output id="confirmation"></output>
     </form>
 
+    <form id="feedbackForm">
+        <label for="phone">Phone Number:</label><br />
+        <input type="tel" id="phone" name="phone" placeholder="123-456-7890" onblur="validatePhone()" required
+            autofocus />
+
+        <label for="eventSelect">Choose Event:</label><br />
+        <select id="eventSelect" onChange="showFee()">
+            <option value="">Select an event</option>
+            <option value="cleanup" data-fee="0">Community Cleanup - Free</option>
+            <option value="run" data-fee="15">Charity Run - $15/option>
+            <option value="foodDrive" data-fee="5">Food Drive - $5</option>
+        </select><br />
+
+        <div id="feeDisplay"></div><br />
+
+        <button type="button" onclick="confirmSubmit()">Submit Feedback</button><br /><br />
+
+        <img src="event-promo.jpg" alt="Event Promo" ondblclick="enlargeImage(this)"
+            style="width:200px; cursor:pointer;"><br /><br />
+
+        <label for="feedbackText">Your Feedback:</label><br />
+        <textarea id="feedbackText" rows="4" onkeyup="countChars()" maxlength="200"></textarea><br />
+        Characters: <span id="charCount">0</span>/200
+
+        <video id="promoVideo" width="320" controls oncanplay="videoReady()">
+            <source src="promo.mp4" type="video/mp4" />
+            Your Browser does not support the video tag.
+        </video>
+
+        <p id="videoStatus"></p>
+
+        <label for="prefEvent">Preferred Event:</label>
+        <select id="prefEvent" onchange="savePreference()">
+            <option value="">Select...</option>
+            <option value="cleanup">Community Cleanup</option>
+            <option value="run">Charity Run</option>
+            <option value="foodDrive">Food Drive</option>
+        </select>
+
+        <button onclick="clearPreferences()">Clear Preferences</button>
+
+        <button onclick="findNearby()">Find Nearby Events</button>
+        <p id="location"></p>
+
+    </form>
+
     <script>
         const form = document.getElementById('registrationForm');
         const confirmation = document.getElementById('confirmation');
@@ -112,6 +158,100 @@
             event.preventDefault(); // prevent actual submission
             confirmation.textContent = `Thank you for registering, ${form.name.value}!`;
         });
+
+        function validatePhone() {
+            const phoneInput = document.getElementById('phone');
+            const regex = /^\d{3}-\d{3}-\d{4}$/;
+            if (!regex.test(phoneInput.value)) {
+                alert('Phone number must be in the format 123-456-7890');
+                phoneInput.focus();
+            }
+        }
+
+        function showFee() {
+            const select = document.getElementById('eventSelect');
+            const fee = select.options[select.selectedIndex].dataset.fee;
+            const display = document.getElementById('feeDisplay');
+            display.textContent = fee ? `Event Fee: $${fee}` : '';
+        }
+
+        function confirmSubmit() {
+            alert('Thank you for your feedback');
+        }
+
+        function enlargeImage() {
+            if (img.style.width === '400px') {
+                img.style.width = '200px';
+            } else {
+                img.style.width = '400px';
+            }
+        }
+
+        function countChars() {
+            const text = document.getElementById('feedbackText').value;
+            document.getElementById('charCount').textContent = text.length;
+        }
+
+        function videoReady() {
+            document.getElementById('videoStatus').textContent = "Video ready to play";
+        }
+
+        window.onbeforeunload = function () {
+            return "You have unsaved changes. Are you sure you want to leave?";
+        }
+
+        const prefSelect = document.getElementById('prefEvent');
+
+        // Load preference on page load
+        window.onload = function () {
+            const saved = localStorage.getItem('preferredEvent');
+            if (saved) {
+                prefSelect.value = saved;
+            }
+        };
+
+        function savePreference() {
+            localStorage.setItem('preferredEvent', prefSelect.value);
+            sessionStorage.setItem('sessionEvent', prefSelect.value);
+        }
+
+        function clearPreferences() {
+            localStorage.removeItem('preferredEvent');
+            sessionStorage.removeItem('sessionEvent');
+            prefSelect.value = '';
+        }
+
+        function findNearby(){
+            const locationDisplay = document.getElementById('location');
+
+            if (!navigator.geolocation){
+                locationDisplay.textContent = "Geolocation is not supportedby your browser.";
+                return;
+            }
+
+            function success(position){
+                const lattitude = position.coords.latitude.toFixed(4);
+                const longitude = position.coords.longitude.toFixed(4);
+                locationDisplay.textContent = `Your location: Latitude ${latitude}, Longitude ${longitude}`;
+            }
+
+            function error(err){
+                if (err.code === err.PERMISSION_DENIED){
+                    locationDisplay.textContent = "Permission denied for location access.";
+                }
+                else if (err.code === err.TIMEOUT){
+                    locationDisplay.textContent = "Location request timed out.";
+                } else {
+                    locationDisplay.textContent = "Unable to retrieve location.";
+                }
+            }
+
+            navigator.geolocation.getCurrentPosition(success, error, {
+                enableHighAccuracy: true,
+                timeout: 5000, 
+                maximumAge: 0
+            });
+        }
     </script>
 
 
