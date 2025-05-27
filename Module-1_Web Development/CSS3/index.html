@@ -6,21 +6,104 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Local Community Event Portal</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
     <style>
         /* Body Background style */
-        body{
-            background-color:rgb(255, 195, 85);
+        body {
+            background-color: rgb(255, 195, 85);
         }
     </style>
 </head>
 
 <body>
-   <!-- 1) Inline vs Internal vs External -->
-    <h1 style="color:red;">Welcome to the Community Portal</h1>
-    <h2 id="mainHeader">Upcoming Events</h2>
-    <button></button>
+    <!-- 1) Inline vs Internal vs External -->
+
+    <section id="home">
+        <h1 style="color:red;">Welcome to the Community Portal</h1>
+    </section>
+
+    <section id="events">
+        <h2>Upcoming Events</h2>
+    </section>
+
+    <!-- 2) CSS Syntaxes and Comments -->
+    <button class="cta-button">Click Me!</button>
+
+    <!-- 3) Selectors Playground -->
+    <section id="eventSection">
+        <!-- 8) Box Model and Layout Control -->
+        <div class="eventCard">
+            <p class="description">The event will be specifically listed here</p>
+        </div>
+        <h3>Tune to our events, always</h3>
+        <p>in order to be always relevant</p>
+    </section>
+
+    <!-- 4) Color & Background Styling -->
+    <!-- 5) Typography: Fonts and Text -->
+
+    <!-- 6) Links and List Styling -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="help.html" target="_blank" rel="noopener">Help</a></li>
+        </ul>
+    </nav>
+
+    <!-- 7) Table Styling -->
+    <table>
+        <thead>
+            <tr>
+                <th>Participant</th>
+                <th>Event</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alice</td>
+                <td>Hackathon</td>
+                <td>10:00 AM</td>
+            </tr>
+            <tr>
+                <td>Bob</td>
+                <td>Workshop</td>
+                <td>12:00 PM</td>
+            </tr>
+            <tr>
+                <td>Charlie</td>
+                <td>Seminar</td>
+                <td>2:00 PM</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- 9) Multiple Columns in text -->
+    <div class="news-article">
+        <p>
+            The technology world witnessed a major breakthrough today as a new artificial intelligence model surpassed
+            previous records in natural language understanding. Researchers at OpenAI announced that their latest
+            version of the language model has set a new benchmark for complex reasoning tasks.
+        </p>
+        <p>
+            In addition to improved performance, the model features optimized resource usage, making it more
+            environmentally sustainable. Experts believe this advancement will significantly impact industries ranging
+            from education to healthcare by providing smarter, more adaptive systems.
+        </p>
+        <p>
+            Meanwhile, global discussions around ethical AI deployment continue, with governments and organizations
+            working together to establish frameworks that ensure safe and responsible usage of such powerful tools.
+        </p>
+    </div>
+
+    <!-- 10) Responsive Web Design with Media Queries -->
+    <!-- applied for nav ul, img, body elements -->
+
 </body>
 
 </html>

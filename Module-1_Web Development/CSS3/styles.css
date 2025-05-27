@@ -1,5 +1,187 @@
-#mainHeader{
+/* Reset mmargin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style all h2 elements */
+h2 {
+  font-size: 1.8rem;
+  color: #004080;
+}
+
+/* Banner with unique ID */
+#mainHeader {
+  background-color: "#e6f2ff";
+  padding: 15px;
+  border-bottom: 2px solid #004080;
+}
+
+/* Event container style */
+.eventCard {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Grouping selector for h3 and p */
+h3,
+p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+/* Body with fallback background color and image */
+body {
+  background-color: #003366;
+  background-image: url("https://plus.unsplash.com/premium_photo-1748152778956-c4accfc55249?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/*  Heading with font weight and transform */
+h1,
+h2 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+/* Description paragraphs */
+.description {
+  font-style: italic;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+/* Gradient for section headers */
+section h2 {
+  background: linear-gradient(90deg, #0077b6, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Link styles */
+a:link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+a:active {
+  color: #ff0000;
+}
+
+/* Navigation list styling */
+nav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+nav li {
+  padding: 5px 10px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  background-color: #f9f9f9;
+  color: black;
+}
+tr:nth-child(even) {
+  background-color: #e6f2ff;
+}
+th {
+  background-color: #004080;
+  color: white;
+}
+
+/* Event card styling with box model properties */
+.eventCard {
+  border: 2px solid #007bff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+input:focus {
+  outline: 3px solid #0056b3;
+}
+
+/* Hidden occupies space */
+.hidden-visible {
+  visibility: hidden;
+}
+
+/* removes from layout */
+.hidden-display {
+  display: none;
+}
+
+/* Multiple columns in text like newspaper */
+.news-article {
+  column-count: 2;
+  column-gap: 30px;
+  column-rule: 1px solid gray;
+  padding: 20px;
+}
+
+/* Header Styles */
+/*#mainHeader{
     font-family: Arial, sans-serif;
     color: #333;
     text-align: center;
+}*/
+
+/* Style for main CTA button */
+.cta-button {
+  background-color: "#007BF";
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  img.responsive {
+    width: 80w;
+    height: auto;
+  }
+
+  body {
+    font-size: 14px;
+  }
 }
