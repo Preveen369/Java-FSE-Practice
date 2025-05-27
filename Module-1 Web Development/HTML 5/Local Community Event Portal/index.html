@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- 1) Create the HTML5 Base Template -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Local Community Event Portal</title>
@@ -33,6 +34,8 @@
 </head>
 
 <body>
+    <!-- 2) Navigation and Linking  -->
+
     <!-- Navigation -->
     <nav>
         <a href="#home">Home</a>
@@ -54,10 +57,14 @@
         <h2>Contact Us</h2>
     </section>
 
+    <!-- 3) Welcome Message with Styling and ID/Class -->
+    
     <div id="welcomeBanner">
         Welcome back, <span class="highlight">User!</span>
         <span style="color: red; font-weight: bold;">Special Offer: 20% Off!</span>
     </div>
+
+    <!-- 4) Image Gallery for Community Events -->
 
     <table>
         <tr>
@@ -77,6 +84,8 @@
             </td>
         </tr>
     </table>
+
+    <!-- 5) Event Registration Form -->
 
     <form id="registrationForm" style="max-width:400px; margin:auto; padding:1rem; border:1px solid #ccc;">
         <label for="name">Name:</label><br />
@@ -104,6 +113,8 @@
         <output id="confirmation"></output>
     </form>
 
+    <!-- 6) Event Feedback with Events Handling  -->
+
     <form id="feedbackForm">
         <label for="phone">Phone Number:</label><br />
         <input type="tel" id="phone" name="phone" placeholder="123-456-7890" onblur="validatePhone()" required
@@ -128,12 +139,16 @@
         <textarea id="feedbackText" rows="4" onkeyup="countChars()" maxlength="200"></textarea><br />
         Characters: <span id="charCount">0</span>/200
 
+        <!-- 7) Video Invite with Media Events -->
+
         <video id="promoVideo" width="320" controls oncanplay="videoReady()">
             <source src="promo.mp4" type="video/mp4" />
             Your Browser does not support the video tag.
         </video>
-
+        
         <p id="videoStatus"></p>
+
+        <!-- 8) Saving User Preferences -->
 
         <label for="prefEvent">Preferred Event:</label>
         <select id="prefEvent" onchange="savePreference()">
@@ -145,6 +160,8 @@
 
         <button onclick="clearPreferences()">Clear Preferences</button>
 
+        <!-- 9) Geolocation for Event Mapping -->
+         
         <button onclick="findNearby()">Find Nearby Events</button>
         <p id="location"></p>
 
