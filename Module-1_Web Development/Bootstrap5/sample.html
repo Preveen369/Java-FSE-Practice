@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap Local Files</title>
+    <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1 class="text-success">Bootstrap Local Setup</h1>
+
+    <script src="./bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <div class="container1">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 bg-primary text-white p-3">Column 1</div>
+            <div class="col-12 col-md-6 col-lg-4 bg-secondary text-white p-3">Column 2</div>
+            <div class="col-12 col-md-6 col-lg-4 bg-success text-white p-3">Column 3</div>
+        </div>
+    </div>
+
+    <div class="container2">
+        <div class="row">
+            <div class="col">Column 1</div>
+            <div class="col">Column 2</div>
+            <div class="col">Column 3</div>
+        </div>
+    </div>
+
+    <div class="container3">
+        <div class="row">
+            <div class="col-md-3 bg-light p-3">Sidebar</div>
+            <div class="col-md-9 bg-white p-3">Main Content</div>
+        </div>
+    </div>
+
+    <div class="container4">
+        <div class="row">
+            <div class="col-sm-3 bg-primary text-white p-2">Col 1</div>
+            <div class="col-sm-3 bg-secondary text-white p-2">Col 2</div>
+            <div class="col-sm-3 bg-success text-white p-2">Col 3</div>
+            <div class="col-sm-3 bg-danger text-white p-2">Col 4</div>
+        </div>
+    </div>
+
+    <div class="container5" style="height:200px;">
+        <div class="row justify-content-center align-items-center" style="height:100%;">
+            <div class="col-6 bg-info text-white text-center p-4">
+                Centered Content
+            </div>
+        </div>
+    </div>
+
+    <div class="container6">
+        <div class="row">
+            <div class="col-md-6 order-md-2 bg-warning p-3">Second on md</div>
+            <div class="col-md-6 order-md-1 bg-info p-3">First on md</div>
+        </div>
+    </div>
+
+
+    <nav class="d-flex flex-column flex-md-row bg-light p-3">
+        <a href="#" class="p-2">Home</a>
+        <a href="#" class="p-2">About</a>
+        <a href="#" class="p-2">Contact</a>
+    </nav>
+
+    <div class="card p-3 d-flex justify-content-between align-items-center" style="width: 300px;">
+        <div>Left Content</div>
+        <div>Right Content</div>
+    </div>
+
+    <div class="container p-4">
+        <h1 class="display-1">Display 1 Heading</h1>
+        <p class="lead">This is a lead paragraph — larger font size and lighter weight.</p>
+        <p class="text-muted">This is muted text (lighter color).</p>
+        <p class="fw-bold">This text is bold.</p>
+    </div>
+
+
+    <p class="text-uppercase">uppercase text</p>
+    <p class="text-lowercase">LOWERCASE TEXT</p>
+    <p class="text-capitalize">capitalize this sentence</p>
+
+
+    <form class="container p-3">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter email" />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Password" />
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="terms" class="form-check-input" />
+            <label for="terms" class="form-check-label">Agree to terms</label>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="Username" />
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+    <form class="container p-3" style="max-width: 400px;">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" />
+            <label for="floatingEmail">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Login</button>
+    </form>
+
+    <div class="container p-3">
+        <button class="btn btn-primary me-2">Primary</button>
+        <button class="btn btn-secondary me-2">Secondary</button>
+        <button class="btn btn-success me-2">Success</button>
+        <button class="btn btn-danger me-2">Danger</button>
+        <button class="btn btn-warning me-2">Warning</button>
+        <button class="btn btn-info me-2">Info</button>
+        <button class="btn btn-light me-2">Light</button>
+        <button class="btn btn-dark me-2">Dark</button>
+        <button class="btn btn-outline-primary">Outline Primary</button>
+    </div>
+
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary">Left</button>
+        <button type="button" class="btn btn-primary">Middle</button>
+        <button type="button" class="btn btn-primary">Right</button>
+    </div>
+
+    <div class="btn-group mt-3" role="group" aria-label="Checkbox toggle buttons">
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+        <label class="btn btn-outline-success" for="btncheck1">Checkbox 1</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+        <label class="btn btn-outline-success" for="btncheck2">Checkbox 2</label>
+    </div>
+
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light px-3">
+        <a class="navbar-brand" href="#">MyLogo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <ul class="nav nav-tabs mb-3">
+        <li class="nav-item"><a class="nav-link active" href="#">Active Tab</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Tab 2</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Tab 3</a></li>
+    </ul>
+
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link active" href="#">Pill 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Pill 2</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Pill 3</a></li>
+    </ul>
+
+    <div class="card" style="width: 18rem;">
+        <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="Profile Image" />
+        <div class="card-body">
+            <h5 class="card-title">John Doe</h5>
+            <p class="card-text">Web developer and designer.</p>
+            <a href="#" class="btn btn-primary">Contact</a>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-start p-3 border">
+        <img src="https://via.placeholder.com/64" class="me-3 rounded" alt="Media Image" />
+        <div>
+            <h5>Media heading</h5>
+            <p>This is content next to the image aligned on the left.</p>
+        </div>
+    </div>
+
+
+    <section class="m-3 mt-4 p-2 py-5 bg-light">
+        <h2>Spacing Example</h2>
+        <p>This section uses margin and padding utilities.</p>
+    </section>
+
+
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4 p-4 border rounded">
+                <h3>Basic</h3>
+                <p>$10/month</p>
+            </div>
+            <div class="col-md-4 p-4 border rounded">
+                <h3>Standard</h3>
+                <p>$20/month</p>
+            </div>
+            <div class="col-md-4 p-4 border rounded">
+                <h3>Premium</h3>
+                <p>$30/month</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-4">
+        <div class="p-3 mb-3 bg-primary text-white">Primary Panel</div>
+        <div class="p-3 mb-3 bg-warning text-dark">Warning Panel</div>
+        <div class="p-3 mb-3 bg-success text-white">Success Panel</div>
+    </div>
+
+
+    <div class="p-5 bg-dark bg-gradient text-white">
+        <h2>Gradient Background</h2>
+        <p>This section has a dark gradient background with white text.</p>
+    </div>
+
+    <div class="d-none d-md-block bg-info p-3">Visible on md and up</div>
+    <div class="d-lg-flex bg-warning p-3">Flex on lg and up</div>
+
+
+    <div class="d-none d-sm-block bg-secondary p-3" style="width: 200px;">
+        Sidebar (Visible sm and above)
+    </div>
+
+    <img src="https://via.placeholder.com/150" class="border border-primary border-3 rounded-circle" alt="Profile" />
+
+
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded-pill p-4" style="max-width: 400px; margin: auto;">
+            <div class="card-body text-center">
+                <h5 class="card-title">Shadow and Rounded Pill Card</h5>
+                <p class="card-text">This card uses a large shadow and pill-shaped rounded corners.</p>
+                <a href="#" class="btn btn-primary">Action</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

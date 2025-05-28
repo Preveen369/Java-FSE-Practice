@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap 16.1 Fixed Footer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container mt-5 mb-5">
+        <h1>Page Content</h1>
+        <p>This is some sample content above the fixed footer.</p>
+    </div>
+
+    <footer class="bg-dark text-white text-center p-3 position-fixed bottom-0 w-100">
+        Fixed Footer Content
+    </footer>
+
+    <div class="container mt-5">
+        <div class="position-relative d-inline-block">
+            <img src="https://via.placeholder.com/200" class="img-fluid rounded" alt="Sample Image" />
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                New
+                <span class="visually-hidden">New badge</span>
+            </span>
+        </div>
+
+</body>
+
+</html>
